@@ -1,7 +1,6 @@
 
 
 
-import 'package:auto_route/auto_route.dart';
 import 'package:nans/dependencies.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/presentation/style.dart';
@@ -15,14 +14,14 @@ class CustomAppBar extends AppBar{
   final BuildContext context;
   final List<Widget> barActions;
 
-  CustomAppBar({Key? key, required this.barTitle,required this.context,this.barActions=const []}):super(key: key,
+  CustomAppBar( {Key? key, required this.barTitle,required this.context,this.barActions=const []}):super(key: key,
   elevation: 0,
     backgroundColor: Colors.white,
     titleSpacing: 0,
-  leading:getIt<LocalizationManager>().getHorizontalArrowIcon(
-  height:24, onTap:()=> AutoRouter.of(context).canPop()? AutoRouter.of(context).pop():
-                        AutoRouter.of(context).replace( LoginRoute()),
-  ),
+  leading:appRouter.canPop()? getIt<LocalizationManager>().getHorizontalArrowIcon(
+  height:24, onTap:()=> appRouter.canPop()? appRouter.pop():
+                        appRouter.replace( const LoginRoute()),
+  ):const CustomSizedBox(width: 24,),
 
   title: Text(
     barTitle.translateWord,style: AppStyle.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),

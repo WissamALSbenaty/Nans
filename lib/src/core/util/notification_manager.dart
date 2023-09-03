@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:nans/dependencies.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/util/localization_manager.dart';
-import 'package:nans/src/features/app/presentation/pages/app.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
@@ -35,7 +34,7 @@ void handleNotificationData(String payload){
 
 @singleton
 class NotificationsManager {
-  FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
+   FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
 
   initFirebaseMessaging() async {
     getNotification();
@@ -50,8 +49,7 @@ class NotificationsManager {
       provisional: false,
       sound: true,
     );
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification
       badge: true,
       sound: true,
@@ -140,7 +138,7 @@ class NotificationsManager {
     Future.delayed(const Duration(seconds: 4)).then((value) {
       // final String eventType = message.data['EventType'].toString();
 
-      appRouter.push(HomeRoute());
+      appRouter.push(AuthRoute());
     });
   }
 }

@@ -25,7 +25,7 @@ const CustomTextFieldDialog({Key? key, required this.title,required this.mainAct
 
 class _CustomTextFieldDialogState extends State<CustomTextFieldDialog> {
   String currentTextFieldValue='';
-
+  FocusNode focusNode=FocusNode();
 
 
 @override
@@ -58,14 +58,16 @@ class _CustomTextFieldDialogState extends State<CustomTextFieldDialog> {
 
         const CustomSizedBox(height: 8,),
          Text(
-          widget.dialogTextContent.translateWord,style: AppStyle.textTheme.titleMedium!.copyWith( color: AppColors.blackColor.shade800,fontWeight: FontWeight.bold),
+          widget.dialogTextContent.translateWord,style: AppStyle.textTheme.titleMedium!.copyWith( color: AppStyle.blackColor.shade800,fontWeight: FontWeight.bold),
         ),
         const CustomSizedBox(height: 8,),
 
         CustomTextField(
           validator: widget.textFieldValidator,
           title:widget.textFieldTitle,
-          onChangedFunction: (value)=>currentTextFieldValue=value ,
+          onChangedFunction: (value)=>currentTextFieldValue=value,
+          focusNode: focusNode,
+          onSubmit: null,
         ),
       ],
     ),
@@ -80,5 +82,10 @@ class _CustomTextFieldDialogState extends State<CustomTextFieldDialog> {
             onPressed: ()=>widget.onMainActionPressed(currentTextFieldValue)
         ),
       )]);
+  }
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
   }
 }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'comment_model.dart';
 
@@ -20,10 +20,11 @@ CommentModel _$CommentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentModel {
-  String get id => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'note')
   String get comment => throw _privateConstructorUsedError;
-  double get vote => throw _privateConstructorUsedError;
+  @JsonKey(name: 'value')
+  int get vote => throw _privateConstructorUsedError;
+  UserOfCommentModel get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,10 @@ abstract class $CommentModelCopyWith<$Res> {
           CommentModel value, $Res Function(CommentModel) then) =
       _$CommentModelCopyWithImpl<$Res, CommentModel>;
   @useResult
-  $Res call({String id, String username, String comment, double vote});
+  $Res call(
+      {@JsonKey(name: 'note') String comment,
+      @JsonKey(name: 'value') int vote,
+      UserOfCommentModel user});
 }
 
 /// @nodoc
@@ -53,20 +57,11 @@ class _$CommentModelCopyWithImpl<$Res, $Val extends CommentModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? username = null,
     Object? comment = null,
     Object? vote = null,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
       comment: null == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -74,7 +69,11 @@ class _$CommentModelCopyWithImpl<$Res, $Val extends CommentModel>
       vote: null == vote
           ? _value.vote
           : vote // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserOfCommentModel,
     ) as $Val);
   }
 }
@@ -87,7 +86,10 @@ abstract class _$$_CommentModelCopyWith<$Res>
       __$$_CommentModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String username, String comment, double vote});
+  $Res call(
+      {@JsonKey(name: 'note') String comment,
+      @JsonKey(name: 'value') int vote,
+      UserOfCommentModel user});
 }
 
 /// @nodoc
@@ -101,20 +103,11 @@ class __$$_CommentModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? username = null,
     Object? comment = null,
     Object? vote = null,
+    Object? user = null,
   }) {
     return _then(_$_CommentModel(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
       comment: null == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -122,7 +115,11 @@ class __$$_CommentModelCopyWithImpl<$Res>
       vote: null == vote
           ? _value.vote
           : vote // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserOfCommentModel,
     ));
   }
 }
@@ -131,26 +128,25 @@ class __$$_CommentModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CommentModel implements _CommentModel {
   _$_CommentModel(
-      {required this.id,
-      required this.username,
-      required this.comment,
-      required this.vote});
+      {@JsonKey(name: 'note') required this.comment,
+      @JsonKey(name: 'value') required this.vote,
+      required this.user});
 
   factory _$_CommentModel.fromJson(Map<String, dynamic> json) =>
       _$$_CommentModelFromJson(json);
 
   @override
-  final String id;
-  @override
-  final String username;
-  @override
+  @JsonKey(name: 'note')
   final String comment;
   @override
-  final double vote;
+  @JsonKey(name: 'value')
+  final int vote;
+  @override
+  final UserOfCommentModel user;
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, username: $username, comment: $comment, vote: $vote)';
+    return 'CommentModel(comment: $comment, vote: $vote, user: $user)';
   }
 
   @override
@@ -158,16 +154,14 @@ class _$_CommentModel implements _CommentModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CommentModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
             (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.vote, vote) || other.vote == vote));
+            (identical(other.vote, vote) || other.vote == vote) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, comment, vote);
+  int get hashCode => Object.hash(runtimeType, comment, vote, user);
 
   @JsonKey(ignore: true)
   @override
@@ -185,22 +179,21 @@ class _$_CommentModel implements _CommentModel {
 
 abstract class _CommentModel implements CommentModel {
   factory _CommentModel(
-      {required final String id,
-      required final String username,
-      required final String comment,
-      required final double vote}) = _$_CommentModel;
+      {@JsonKey(name: 'note') required final String comment,
+      @JsonKey(name: 'value') required final int vote,
+      required final UserOfCommentModel user}) = _$_CommentModel;
 
   factory _CommentModel.fromJson(Map<String, dynamic> json) =
       _$_CommentModel.fromJson;
 
   @override
-  String get id;
-  @override
-  String get username;
-  @override
+  @JsonKey(name: 'note')
   String get comment;
   @override
-  double get vote;
+  @JsonKey(name: 'value')
+  int get vote;
+  @override
+  UserOfCommentModel get user;
   @override
   @JsonKey(ignore: true)
   _$$_CommentModelCopyWith<_$_CommentModel> get copyWith =>

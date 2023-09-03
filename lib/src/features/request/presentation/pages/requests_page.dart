@@ -8,14 +8,14 @@ import 'package:nans/src/core/presentation/widgets/custom_empty_view.dart';
 import 'package:nans/src/core/util/extentions.dart';
 import 'package:nans/src/core/util/mixins.dart';
 import 'package:nans/src/features/request/controllers/requests_controller.dart';
-import 'package:nans/src/features/request/presentation/widget/request_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nans/src/features/request/presentation/widgets/request_tile.dart';
 
 
 
-class RequestsPage extends StatelessWidget with WidgetStoreCreatorMixin<AppController>  {
+class RequestsPage extends StatelessWidget with WidgetControllerCreatorMixin<AppController>  {
    RequestsPage({Key? key}) : super(key: key);
 
 
@@ -23,9 +23,9 @@ class RequestsPage extends StatelessWidget with WidgetStoreCreatorMixin<AppContr
   Widget build(BuildContext context) {
 
     return Observer(builder: (_) {
-      return createdStore.userProfileModel==null? CustomEmptyView(NotAuthorizedError(message: null)):
+      return createdController.userProfileModel==null? CustomEmptyView(NotAuthorizedError(message: null)):
         Scaffold(
-          backgroundColor: AppColors.blue,
+          backgroundColor: AppStyle.blue,
 
           appBar: AppBar(
             titleSpacing: 24.w,

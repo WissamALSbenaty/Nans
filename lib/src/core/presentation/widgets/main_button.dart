@@ -21,7 +21,7 @@ class MainButton extends StatelessWidget {
       style: ButtonStyle(
         padding: MaterialStateProperty.all(EdgeInsets.zero),
         elevation: MaterialStateProperty.all(5),
-        backgroundColor:MaterialStateProperty.all(AppColors.yellow),
+        backgroundColor:MaterialStateProperty.all(AppStyle.primary),
         shape: MaterialStateProperty.all( RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),))
       ),
         onPressed: !isLoading?  (){

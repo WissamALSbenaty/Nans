@@ -14,9 +14,8 @@ class UserProfileModel with _$UserProfileModel{
     required String fatherName,
     required String motherName,
     required String phoneNumber,
-    required String password,
     required GenderType gender,
-    required bool accountConfirmation,
+   @JsonKey(name: 'isVerified') required bool accountConfirmation,
   })=_UserProfileModel;
 
   factory UserProfileModel.fromJson( Map<String,dynamic> data)=>_$UserProfileModelFromJson(data);

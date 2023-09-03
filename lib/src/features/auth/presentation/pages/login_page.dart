@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:nans/src/core/presentation/assets.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/presentation/style.dart';
 import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
@@ -14,14 +15,18 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
-class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginController>{
-   LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage>with StateControllerCreatorMixin<LoginController,LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: createdStore.formKey,
+      key: createdController.formKey,
       child: Observer(
           builder: (ctx) => Scaffold(
               backgroundColor:Colors.white,
@@ -37,27 +42,21 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
                   children: [
 
                    Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        const CustomSizedBox(width: 8,),
-                        Text('Use your phone number to login'.translateWord,
-                          style:AppStyle.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold) ,),
-                      ],
-                    ),
-                    const CustomSizedBox(height: 8,),
 
-                      EmailTextField(onChangedFunction:(value)=> createdStore.changeValue(0,value)),
+                    Image.asset(Assets.logo,
+                    height: 250.r,width: 250.r,
+                    ),
+                      EmailTextField(fieldIndex: 0,formController: createdController,),
                       const CustomSizedBox(height: 8,),
-                      PasswordTextField(onChangedFunction:(value)=> createdStore.changeValue(1,value),)
+                     PasswordTextField(fieldIndex: 1,formController: createdController,),
                   ],
                 ),
 
                     const CustomSizedBox(height: 24,),
 
                     TextButton(
-                        onPressed: ()=>createdStore.restorePassword(ctx),
+                        onPressed: ()=>createdController.restorePassword(ctx),
                         child: Text("I Forgot My Password !".translateWord,
                             style: AppStyle.textTheme.titleMedium!.copyWith(color: Colors.blue,
                               fontWeight: FontWeight.bold,))
@@ -65,7 +64,7 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
 
                     TextButton(
 
-                        onPressed: ()=>AutoRouter.of(context).replace(const SignUpRoute()),
+                        onPressed: ()=>appRouter.replace( const RegisterRoute()),
                         child: Text("I Dont have an account !".translateWord,
                             style: AppStyle.textTheme.titleMedium!.copyWith(color: Colors.blue,
                               fontWeight: FontWeight.bold,))
@@ -76,8 +75,8 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
 
                     Center(
                       child: MainButton(title: 'Login',
-                          isLoading: createdStore.isLoading,
-                          onPressed: ()=>createdStore.submitForm(context)
+                          isLoading: createdController.isLoading,
+                          onPressed: createdController.submitForm
                       ),
                     ),
 

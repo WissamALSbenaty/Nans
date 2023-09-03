@@ -62,7 +62,6 @@ class Assets{
   static const String usedPoints="assets/images/svg/usedPoints.svg";
   static const String totalSaving="assets/images/svg/totalSaving.svg";
   static const String homePageGift="assets/images/svg/homePageGift.svg";
-  static const String logo="assets/images/svg/logo.svg";
   static const String deleteAccount="assets/images/svg/deleteAccount.svg";
   static const String doneProcess="assets/images/svg/doneProcess.svg";
   static const String info="assets/images/svg/info.svg";
@@ -80,6 +79,7 @@ class Assets{
   // Png
   static const String myPoints="assets/images/png/myPoints.png";
   static const String homePageBox="assets/images/png/homePageBox.png";
+  static const String logo="assets/images/png/logo.png";
 
 
 

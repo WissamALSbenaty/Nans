@@ -11,9 +11,8 @@ class RequestModel with _$RequestModel{
 
   factory RequestModel({
     required String id,
-    required String title,
-    @JsonKey(fromJson: DateTime.parse) required DateTime creationDate,
-    required String requestStatus,
+    @JsonKey(name:'createdAt',fromJson: DateTime.parse) required DateTime creationDate,
+    @JsonKey(name:'status') required String requestStatus,
     required DepartmentModel department,
     required ServiceModel service,
   })=_RequestModel;

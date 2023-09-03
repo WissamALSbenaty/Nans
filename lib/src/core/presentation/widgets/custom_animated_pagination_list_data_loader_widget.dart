@@ -1,4 +1,5 @@
-import 'package:nans/src/core/controllers/custom_pagination_list_data_loader.dart';
+
+import 'package:nans/src/core/controllers/pagination_list_data_loader.dart';
 import 'package:nans/src/core/presentation/style.dart';
 import 'package:nans/src/core/presentation/widgets/custom_animated_list.dart';
 import 'package:nans/src/core/presentation/widgets/custom_empty_view.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class CustomAnimatedPaginationListDataLoaderWidget<T> extends StatefulWidget {
-  final CustomPaginationListDataLoader<T> dataLoader;
+  final PaginationListDataLoader<T> dataLoader;
   final Widget Function(T) dataToWidgetMapper;
   final ScrollController? scrollController;
 
@@ -30,8 +31,8 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
 
       if ( widget.dataLoader.canLoadMoreData && !widget.dataLoader.isLoadingMoreData &&
           scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-         await widget.dataLoader.loadNextPage();
-         addNewElements();
+        await widget.dataLoader.loadNextPage();
+        addNewElements();
 
       }
 
@@ -40,11 +41,11 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
   }
 
   void addNewElements(){
-    int newElementsLength=widget.dataLoader.dataList.length - (animatedListKey.currentState?.toRenderChildren.length??0) ~/2;
+    int newElementsLength=widget.dataLoader.data!.length - (animatedListKey.currentState?.toRenderChildren.length??0) ~/2;
     if(newElementsLength<=0) {
       return ;
     }
-    List<T> newElements=widget.dataLoader.dataList.sublist(widget.dataLoader.dataList.length-newElementsLength);
+    List<T> newElements=widget.dataLoader.data!.sublist(widget.dataLoader.data!.length-newElementsLength);
     animatedListKey.currentState?.addItems(newElements.map( widget.dataToWidgetMapper).toList());
 
   }
@@ -53,43 +54,39 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      color: AppColors.yellow,
-      onRefresh: widget.dataLoader.initializeLoader,
-      child :  AnimatedSwitcher(
-            duration:const Duration(milliseconds: 1000),
-            transitionBuilder: (child, animation) => ScaleTransition(
-              scale:animation,
-              child: child,
-            ),
-        child: Observer(
-            builder: (_) {
-              widget.dataLoader.isLoading;
-            if(widget.dataLoader.isStillLazy){
-              widget.dataLoader.initializeLoader();
-              return Container();
-              }
-              return widget.dataLoader.isLoading?const CustomListLoadingShimmer()
-                  :widget.dataLoader.error!=null?CustomEmptyView( widget.dataLoader.error!, onHelperButtonPressed: widget.dataLoader.initializeLoader,)
-                  :Column(
+        color: AppStyle.primary,
+        onRefresh: widget.dataLoader.loadData,
+        child :  AnimatedSwitcher(
+          duration:const Duration(milliseconds: 1000),
+          transitionBuilder: (child, animation) => ScaleTransition(
+            scale:animation,
+            child: child,
+          ),
+          child: Observer(
+              builder: (_) {
+                widget.dataLoader.isLoading;
+            return widget.dataLoader.isLoading?const CustomListLoadingShimmer()
+                    :widget.dataLoader.error!=null?CustomEmptyView( widget.dataLoader.error!, onHelperButtonPressed: widget.dataLoader.loadData,)
+                    :Column(
 
-                    children: [
+                  children: [
 
-                      Expanded(
-                        child: CustomAnimatedList(
-                          key: animatedListKey,
-                          scrollController: scrollController,
-                          children: [
-                            ...widget.dataLoader.dataList.map(widget.dataToWidgetMapper).toList()
-                          ],
-                        ),
+                    Expanded(
+                      child: CustomAnimatedList(
+                        key: animatedListKey,
+                        scrollController: scrollController,
+                        children: [
+                          ...widget.dataLoader.data!.map(widget.dataToWidgetMapper).toList()
+                        ],
                       ),
-                      if(widget.dataLoader.isLoadingMoreData)
-                        const ThreeDotsLoadingIndicator(),
+                    ),
+                    if(widget.dataLoader.isLoadingMoreData)
+                      const ThreeDotsLoadingIndicator(),
 
-                    ],
-                  );
-            }),
-            ));
+                  ],
+                );
+              }),
+        ));
   }
 
   @override

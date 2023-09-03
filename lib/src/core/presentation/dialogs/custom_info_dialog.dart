@@ -27,6 +27,7 @@ class CustomInfoDialog extends StatelessWidget {
       contentPadding: EdgeInsets.all( 8.h),
       actionsPadding: EdgeInsets.all( 8.h),
 
+
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -44,7 +45,7 @@ class CustomInfoDialog extends StatelessWidget {
           ),
 
       content:content!=null?  Text(
-        content!.translateWord,style: AppStyle.textTheme.titleMedium,
+        content!.translateWord,style: AppStyle.textTheme.titleLarge,
       ):null,
 
 
@@ -54,7 +55,7 @@ class CustomInfoDialog extends StatelessWidget {
           children: [
             MainButton(
               isLoading: false,
-                width: 114,
+                width: secondActionText!=null?114:260,
                 title: mainActionText,
                 onPressed: onMainActionPressed
             ),

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'news_details_model.dart';
 
@@ -20,11 +20,12 @@ NewsDetailsModel _$NewsDetailsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NewsDetailsModel {
+  String get description => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
   String? get imagePath => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
   DateTime get creationDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,11 +41,13 @@ abstract class $NewsDetailsModelCopyWith<$Res> {
       _$NewsDetailsModelCopyWithImpl<$Res, NewsDetailsModel>;
   @useResult
   $Res call(
-      {String id,
+      {String description,
+      String id,
       String title,
-      String description,
-      String? imagePath,
-      @JsonKey(fromJson: DateTime.parse) DateTime creationDate});
+      @JsonKey(name: 'image')
+          String? imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
+          DateTime creationDate});
 }
 
 /// @nodoc
@@ -60,13 +63,17 @@ class _$NewsDetailsModelCopyWithImpl<$Res, $Val extends NewsDetailsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? description = null,
     Object? id = null,
     Object? title = null,
-    Object? description = null,
     Object? imagePath = freezed,
     Object? creationDate = null,
   }) {
     return _then(_value.copyWith(
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -74,10 +81,6 @@ class _$NewsDetailsModelCopyWithImpl<$Res, $Val extends NewsDetailsModel>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       imagePath: freezed == imagePath
           ? _value.imagePath
@@ -100,11 +103,13 @@ abstract class _$$_NewsDetailsModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {String description,
+      String id,
       String title,
-      String description,
-      String? imagePath,
-      @JsonKey(fromJson: DateTime.parse) DateTime creationDate});
+      @JsonKey(name: 'image')
+          String? imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
+          DateTime creationDate});
 }
 
 /// @nodoc
@@ -118,13 +123,17 @@ class __$$_NewsDetailsModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? description = null,
     Object? id = null,
     Object? title = null,
-    Object? description = null,
     Object? imagePath = freezed,
     Object? creationDate = null,
   }) {
     return _then(_$_NewsDetailsModel(
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -132,10 +141,6 @@ class __$$_NewsDetailsModelCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       imagePath: freezed == imagePath
           ? _value.imagePath
@@ -151,32 +156,36 @@ class __$$_NewsDetailsModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NewsDetailsModel implements _NewsDetailsModel {
+class _$_NewsDetailsModel extends _NewsDetailsModel {
   _$_NewsDetailsModel(
-      {required this.id,
+      {required this.description,
+      required this.id,
       required this.title,
-      required this.description,
-      this.imagePath,
-      @JsonKey(fromJson: DateTime.parse) required this.creationDate});
+      @JsonKey(name: 'image')
+          this.imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
+          required this.creationDate})
+      : super._();
 
   factory _$_NewsDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$$_NewsDetailsModelFromJson(json);
 
   @override
+  final String description;
+  @override
   final String id;
   @override
   final String title;
   @override
-  final String description;
-  @override
+  @JsonKey(name: 'image')
   final String? imagePath;
   @override
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
   final DateTime creationDate;
 
   @override
   String toString() {
-    return 'NewsDetailsModel(id: $id, title: $title, description: $description, imagePath: $imagePath, creationDate: $creationDate)';
+    return 'NewsDetailsModel(description: $description, id: $id, title: $title, imagePath: $imagePath, creationDate: $creationDate)';
   }
 
   @override
@@ -184,10 +193,10 @@ class _$_NewsDetailsModel implements _NewsDetailsModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NewsDetailsModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
             (identical(other.creationDate, creationDate) ||
@@ -197,7 +206,7 @@ class _$_NewsDetailsModel implements _NewsDetailsModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, description, imagePath, creationDate);
+      Object.hash(runtimeType, description, id, title, imagePath, creationDate);
 
   @JsonKey(ignore: true)
   @override
@@ -213,28 +222,31 @@ class _$_NewsDetailsModel implements _NewsDetailsModel {
   }
 }
 
-abstract class _NewsDetailsModel implements NewsDetailsModel {
+abstract class _NewsDetailsModel extends NewsDetailsModel {
   factory _NewsDetailsModel(
-      {required final String id,
+      {required final String description,
+      required final String id,
       required final String title,
-      required final String description,
-      final String? imagePath,
-      @JsonKey(fromJson: DateTime.parse)
+      @JsonKey(name: 'image')
+          final String? imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
           required final DateTime creationDate}) = _$_NewsDetailsModel;
+  _NewsDetailsModel._() : super._();
 
   factory _NewsDetailsModel.fromJson(Map<String, dynamic> json) =
       _$_NewsDetailsModel.fromJson;
 
   @override
+  String get description;
+  @override
   String get id;
   @override
   String get title;
   @override
-  String get description;
-  @override
+  @JsonKey(name: 'image')
   String? get imagePath;
   @override
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
   DateTime get creationDate;
   @override
   @JsonKey(ignore: true)

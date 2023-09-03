@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'news_model.dart';
 
@@ -22,8 +22,9 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
 mixin _$NewsModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
   String? get imagePath => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
   DateTime get creationDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,8 +41,10 @@ abstract class $NewsModelCopyWith<$Res> {
   $Res call(
       {String id,
       String title,
-      String? imagePath,
-      @JsonKey(fromJson: DateTime.parse) DateTime creationDate});
+      @JsonKey(name: 'image')
+          String? imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
+          DateTime creationDate});
 }
 
 /// @nodoc
@@ -93,8 +96,10 @@ abstract class _$$_NewsModelCopyWith<$Res> implements $NewsModelCopyWith<$Res> {
   $Res call(
       {String id,
       String title,
-      String? imagePath,
-      @JsonKey(fromJson: DateTime.parse) DateTime creationDate});
+      @JsonKey(name: 'image')
+          String? imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
+          DateTime creationDate});
 }
 
 /// @nodoc
@@ -140,8 +145,10 @@ class _$_NewsModel implements _NewsModel {
   _$_NewsModel(
       {required this.id,
       required this.title,
-      this.imagePath,
-      @JsonKey(fromJson: DateTime.parse) required this.creationDate});
+      @JsonKey(name: 'image')
+          this.imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
+          required this.creationDate});
 
   factory _$_NewsModel.fromJson(Map<String, dynamic> json) =>
       _$$_NewsModelFromJson(json);
@@ -151,9 +158,10 @@ class _$_NewsModel implements _NewsModel {
   @override
   final String title;
   @override
+  @JsonKey(name: 'image')
   final String? imagePath;
   @override
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
   final DateTime creationDate;
 
   @override
@@ -197,8 +205,9 @@ abstract class _NewsModel implements NewsModel {
   factory _NewsModel(
       {required final String id,
       required final String title,
-      final String? imagePath,
-      @JsonKey(fromJson: DateTime.parse)
+      @JsonKey(name: 'image')
+          final String? imagePath,
+      @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
           required final DateTime creationDate}) = _$_NewsModel;
 
   factory _NewsModel.fromJson(Map<String, dynamic> json) =
@@ -209,9 +218,10 @@ abstract class _NewsModel implements NewsModel {
   @override
   String get title;
   @override
+  @JsonKey(name: 'image')
   String? get imagePath;
   @override
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(fromJson: DateTime.parse, name: 'createdAt')
   DateTime get creationDate;
   @override
   @JsonKey(ignore: true)

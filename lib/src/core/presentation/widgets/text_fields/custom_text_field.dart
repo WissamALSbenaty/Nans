@@ -18,11 +18,12 @@ class CustomTextField extends StatelessWidget {
   final TextInputFormatter? inputFormatter;
   final CustomValidator? validator;
   final TextEditingController? controller;
-
+  final FocusNode? focusNode;
+  final void Function(String)? onSubmit;
 
   const CustomTextField({Key? key, required this.title, this.isObscureText=false, this.suffixIcon,this.hint,this.isEnabled=true,
     this.prefixIcon, required this.onChangedFunction,this.textInputType,this.initialValue,this.inputFormatter,
-    this.fieldPriority=TextFieldPriority.none, required this.validator,  this.controller,
+    this.fieldPriority=TextFieldPriority.required, required this.validator,  this.controller, required this.focusNode, required this.onSubmit,
   }) : super(key: key);
 
   @override
@@ -34,12 +35,15 @@ class CustomTextField extends StatelessWidget {
       obscureText: isObscureText,
       onChanged: onChangedFunction,
       keyboardType: textInputType,
-      validator: (value)=>validator?.check(fieldName: title, toCheckString: value),
-      cursorColor: AppColors.blackColor.shade600,
+      validator: (value)=>(fieldPriority==TextFieldPriority.optional && (value==null || value.isEmpty) )?null
+          :validator?.check(fieldName: title, toCheckString: value),
+      cursorColor: AppStyle.blackColor.shade600,
       inputFormatters: [
         if(inputFormatter!=null)
           inputFormatter!,
       ],
+      focusNode: focusNode,
+      onFieldSubmitted: onSubmit,
       decoration:   InputDecoration(
 
         hintText: hint?.translateWord,
@@ -50,19 +54,19 @@ class CustomTextField extends StatelessWidget {
         alignLabelWithHint: true,
         border:OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.blackColor.shade200),
+          borderSide: BorderSide(color: AppStyle.blackColor.shade200),
         ),
         focusedBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.yellow),
+          borderSide: const BorderSide(color: AppStyle.primary),
         ),
         errorBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.pink),
+          borderSide: const BorderSide(color: AppStyle.errorColor),
         ),
         focusedErrorBorder:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.errorColor),
+          borderSide: const BorderSide(color: AppStyle.errorColor),
         ),
 
 
@@ -82,11 +86,11 @@ class CustomTextField extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           text: TextSpan(
               text: title.translateWord,
-              style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600),
+              style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppStyle.blackColor.shade600),
               children: [
                 TextSpan(
-                  text:fieldPriority!=TextFieldPriority.none? ' (${fieldPriority.name.translateWord})':'',
-                  style: AppStyle.textTheme.titleMedium!.copyWith(color: AppColors.errorColor),
+                  text:fieldPriority==TextFieldPriority.optional? ' (${fieldPriority.name.translateWord})':'',
+                  style: AppStyle.textTheme.titleMedium!.copyWith(color: AppStyle.errorColor),
 
                 )
               ]

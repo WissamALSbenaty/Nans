@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_profile_model.dart';
 
@@ -25,8 +25,8 @@ mixin _$UserProfileModel {
   String get fatherName => throw _privateConstructorUsedError;
   String get motherName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
   GenderType get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isVerified')
   bool get accountConfirmation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,9 +47,8 @@ abstract class $UserProfileModelCopyWith<$Res> {
       String fatherName,
       String motherName,
       String phoneNumber,
-      String password,
       GenderType gender,
-      bool accountConfirmation});
+      @JsonKey(name: 'isVerified') bool accountConfirmation});
 }
 
 /// @nodoc
@@ -70,7 +69,6 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? fatherName = null,
     Object? motherName = null,
     Object? phoneNumber = null,
-    Object? password = null,
     Object? gender = null,
     Object? accountConfirmation = null,
   }) {
@@ -94,10 +92,6 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
@@ -125,9 +119,8 @@ abstract class _$$_UserProfileModelCopyWith<$Res>
       String fatherName,
       String motherName,
       String phoneNumber,
-      String password,
       GenderType gender,
-      bool accountConfirmation});
+      @JsonKey(name: 'isVerified') bool accountConfirmation});
 }
 
 /// @nodoc
@@ -146,7 +139,6 @@ class __$$_UserProfileModelCopyWithImpl<$Res>
     Object? fatherName = null,
     Object? motherName = null,
     Object? phoneNumber = null,
-    Object? password = null,
     Object? gender = null,
     Object? accountConfirmation = null,
   }) {
@@ -171,10 +163,6 @@ class __$$_UserProfileModelCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -196,9 +184,8 @@ class _$_UserProfileModel implements _UserProfileModel {
       required this.fatherName,
       required this.motherName,
       required this.phoneNumber,
-      required this.password,
       required this.gender,
-      required this.accountConfirmation});
+      @JsonKey(name: 'isVerified') required this.accountConfirmation});
 
   factory _$_UserProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileModelFromJson(json);
@@ -214,15 +201,14 @@ class _$_UserProfileModel implements _UserProfileModel {
   @override
   final String phoneNumber;
   @override
-  final String password;
-  @override
   final GenderType gender;
   @override
+  @JsonKey(name: 'isVerified')
   final bool accountConfirmation;
 
   @override
   String toString() {
-    return 'UserProfileModel(email: $email, name: $name, fatherName: $fatherName, motherName: $motherName, phoneNumber: $phoneNumber, password: $password, gender: $gender, accountConfirmation: $accountConfirmation)';
+    return 'UserProfileModel(email: $email, name: $name, fatherName: $fatherName, motherName: $motherName, phoneNumber: $phoneNumber, gender: $gender, accountConfirmation: $accountConfirmation)';
   }
 
   @override
@@ -238,8 +224,6 @@ class _$_UserProfileModel implements _UserProfileModel {
                 other.motherName == motherName) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.accountConfirmation, accountConfirmation) ||
                 other.accountConfirmation == accountConfirmation));
@@ -248,7 +232,7 @@ class _$_UserProfileModel implements _UserProfileModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, email, name, fatherName,
-      motherName, phoneNumber, password, gender, accountConfirmation);
+      motherName, phoneNumber, gender, accountConfirmation);
 
   @JsonKey(ignore: true)
   @override
@@ -271,9 +255,9 @@ abstract class _UserProfileModel implements UserProfileModel {
       required final String fatherName,
       required final String motherName,
       required final String phoneNumber,
-      required final String password,
       required final GenderType gender,
-      required final bool accountConfirmation}) = _$_UserProfileModel;
+      @JsonKey(name: 'isVerified')
+          required final bool accountConfirmation}) = _$_UserProfileModel;
 
   factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
       _$_UserProfileModel.fromJson;
@@ -289,10 +273,9 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   String get phoneNumber;
   @override
-  String get password;
-  @override
   GenderType get gender;
   @override
+  @JsonKey(name: 'isVerified')
   bool get accountConfirmation;
   @override
   @JsonKey(ignore: true)

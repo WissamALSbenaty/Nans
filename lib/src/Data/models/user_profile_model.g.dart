@@ -13,9 +13,8 @@ _$_UserProfileModel _$$_UserProfileModelFromJson(Map<String, dynamic> json) =>
       fatherName: json['fatherName'] as String,
       motherName: json['motherName'] as String,
       phoneNumber: json['phoneNumber'] as String,
-      password: json['password'] as String,
       gender: $enumDecode(_$GenderTypeEnumMap, json['gender']),
-      accountConfirmation: json['accountConfirmation'] as bool,
+      accountConfirmation: json['isVerified'] as bool,
     );
 
 Map<String, dynamic> _$$_UserProfileModelToJson(_$_UserProfileModel instance) =>
@@ -25,12 +24,11 @@ Map<String, dynamic> _$$_UserProfileModelToJson(_$_UserProfileModel instance) =>
       'fatherName': instance.fatherName,
       'motherName': instance.motherName,
       'phoneNumber': instance.phoneNumber,
-      'password': instance.password,
       'gender': _$GenderTypeEnumMap[instance.gender]!,
-      'accountConfirmation': instance.accountConfirmation,
+      'isVerified': instance.accountConfirmation,
     };
 
 const _$GenderTypeEnumMap = {
-  GenderType.Male: 'Male',
-  GenderType.Female: 'Female',
+  GenderType.MALE: 'MALE',
+  GenderType.FEMALE: 'FEMALE',
 };

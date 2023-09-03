@@ -1,5 +1,5 @@
 
-import 'package:nans/src/Data/Repositories/abstract/repository.dart';
+import 'package:nans/src/Data/repositories/abstract/repository.dart';
 import 'package:nans/src/Data/api_helper.dart';
 import 'package:nans/src/Data/models/app_config_model.dart';
 import 'package:nans/src/Data/models/app_translation_model.dart';

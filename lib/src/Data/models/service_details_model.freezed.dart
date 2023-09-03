@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'service_details_model.dart';
 
@@ -23,11 +23,11 @@ mixin _$ServiceDetailsModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DepartmentModel get department => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  double get votes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'votes')
   List<CommentModel> get comments => throw _privateConstructorUsedError;
+  ServiceFormModel? get serviceForm => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,11 +45,10 @@ abstract class $ServiceDetailsModelCopyWith<$Res> {
       {String id,
       String title,
       DepartmentModel department,
-      double price,
       String? image,
       String description,
-      double votes,
-      List<CommentModel> comments});
+      @JsonKey(name: 'votes') List<CommentModel> comments,
+      ServiceFormModel? serviceForm});
 
   $DepartmentModelCopyWith<$Res> get department;
 }
@@ -70,11 +69,10 @@ class _$ServiceDetailsModelCopyWithImpl<$Res, $Val extends ServiceDetailsModel>
     Object? id = null,
     Object? title = null,
     Object? department = null,
-    Object? price = null,
     Object? image = freezed,
     Object? description = null,
-    Object? votes = null,
     Object? comments = null,
+    Object? serviceForm = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,10 +87,6 @@ class _$ServiceDetailsModelCopyWithImpl<$Res, $Val extends ServiceDetailsModel>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as DepartmentModel,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -101,14 +95,14 @@ class _$ServiceDetailsModelCopyWithImpl<$Res, $Val extends ServiceDetailsModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      votes: null == votes
-          ? _value.votes
-          : votes // ignore: cast_nullable_to_non_nullable
-              as double,
       comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<CommentModel>,
+      serviceForm: freezed == serviceForm
+          ? _value.serviceForm
+          : serviceForm // ignore: cast_nullable_to_non_nullable
+              as ServiceFormModel?,
     ) as $Val);
   }
 
@@ -133,11 +127,10 @@ abstract class _$$_ServiceDetailsModelCopyWith<$Res>
       {String id,
       String title,
       DepartmentModel department,
-      double price,
       String? image,
       String description,
-      double votes,
-      List<CommentModel> comments});
+      @JsonKey(name: 'votes') List<CommentModel> comments,
+      ServiceFormModel? serviceForm});
 
   @override
   $DepartmentModelCopyWith<$Res> get department;
@@ -157,11 +150,10 @@ class __$$_ServiceDetailsModelCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? department = null,
-    Object? price = null,
     Object? image = freezed,
     Object? description = null,
-    Object? votes = null,
     Object? comments = null,
+    Object? serviceForm = freezed,
   }) {
     return _then(_$_ServiceDetailsModel(
       id: null == id
@@ -176,10 +168,6 @@ class __$$_ServiceDetailsModelCopyWithImpl<$Res>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as DepartmentModel,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -188,31 +176,31 @@ class __$$_ServiceDetailsModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      votes: null == votes
-          ? _value.votes
-          : votes // ignore: cast_nullable_to_non_nullable
-              as double,
       comments: null == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<CommentModel>,
+      serviceForm: freezed == serviceForm
+          ? _value.serviceForm
+          : serviceForm // ignore: cast_nullable_to_non_nullable
+              as ServiceFormModel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ServiceDetailsModel implements _ServiceDetailsModel {
+class _$_ServiceDetailsModel extends _ServiceDetailsModel {
   _$_ServiceDetailsModel(
       {required this.id,
       required this.title,
       required this.department,
-      required this.price,
       this.image,
       required this.description,
-      required this.votes,
-      required final List<CommentModel> comments})
-      : _comments = comments;
+      @JsonKey(name: 'votes') required final List<CommentModel> comments,
+      this.serviceForm})
+      : _comments = comments,
+        super._();
 
   factory _$_ServiceDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceDetailsModelFromJson(json);
@@ -224,23 +212,24 @@ class _$_ServiceDetailsModel implements _ServiceDetailsModel {
   @override
   final DepartmentModel department;
   @override
-  final double price;
-  @override
   final String? image;
   @override
   final String description;
-  @override
-  final double votes;
   final List<CommentModel> _comments;
   @override
+  @JsonKey(name: 'votes')
   List<CommentModel> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_comments);
   }
 
   @override
+  final ServiceFormModel? serviceForm;
+
+  @override
   String toString() {
-    return 'ServiceDetailsModel(id: $id, title: $title, department: $department, price: $price, image: $image, description: $description, votes: $votes, comments: $comments)';
+    return 'ServiceDetailsModel(id: $id, title: $title, department: $department, image: $image, description: $description, comments: $comments, serviceForm: $serviceForm)';
   }
 
   @override
@@ -252,26 +241,18 @@ class _$_ServiceDetailsModel implements _ServiceDetailsModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.department, department) ||
                 other.department == department) &&
-            (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.votes, votes) || other.votes == votes) &&
-            const DeepCollectionEquality().equals(other._comments, _comments));
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
+            (identical(other.serviceForm, serviceForm) ||
+                other.serviceForm == serviceForm));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      department,
-      price,
-      image,
-      description,
-      votes,
-      const DeepCollectionEquality().hash(_comments));
+  int get hashCode => Object.hash(runtimeType, id, title, department, image,
+      description, const DeepCollectionEquality().hash(_comments), serviceForm);
 
   @JsonKey(ignore: true)
   @override
@@ -288,16 +269,16 @@ class _$_ServiceDetailsModel implements _ServiceDetailsModel {
   }
 }
 
-abstract class _ServiceDetailsModel implements ServiceDetailsModel {
+abstract class _ServiceDetailsModel extends ServiceDetailsModel {
   factory _ServiceDetailsModel(
       {required final String id,
       required final String title,
       required final DepartmentModel department,
-      required final double price,
       final String? image,
       required final String description,
-      required final double votes,
-      required final List<CommentModel> comments}) = _$_ServiceDetailsModel;
+      @JsonKey(name: 'votes') required final List<CommentModel> comments,
+      final ServiceFormModel? serviceForm}) = _$_ServiceDetailsModel;
+  _ServiceDetailsModel._() : super._();
 
   factory _ServiceDetailsModel.fromJson(Map<String, dynamic> json) =
       _$_ServiceDetailsModel.fromJson;
@@ -309,15 +290,14 @@ abstract class _ServiceDetailsModel implements ServiceDetailsModel {
   @override
   DepartmentModel get department;
   @override
-  double get price;
-  @override
   String? get image;
   @override
   String get description;
   @override
-  double get votes;
-  @override
+  @JsonKey(name: 'votes')
   List<CommentModel> get comments;
+  @override
+  ServiceFormModel? get serviceForm;
   @override
   @JsonKey(ignore: true)
   _$$_ServiceDetailsModelCopyWith<_$_ServiceDetailsModel> get copyWith =>

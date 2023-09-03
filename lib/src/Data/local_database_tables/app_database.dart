@@ -3,7 +3,6 @@
 import 'dart:io';
 
 import 'package:drift/drift.dart';
-import 'package:nans/src/Data/local_database_tables/searches.dart';
 import 'package:nans/src/Data/local_database_tables/users.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,26 +12,18 @@ import 'package:drift/native.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [Users , Searches])
+@DriftDatabase(tables: [Users ])
 @singleton
  class AppDatabase extends _$AppDatabase {
 
   AppDatabase() : super(_openConnection());
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 1;
 
-  @override
-  MigrationStrategy get migration =>
-      MigrationStrategy(onUpgrade: (migrator, from, to) async {
-        if (from == 1) {
-          await migrator.createTable(searches);
-        }
-      });
 
   Future<void> clearDatabase() async {
     Future.wait([
       deleteUser(),
-      deleteSearch(),
     ]);
   }
 
@@ -46,32 +37,6 @@ part 'app_database.g.dart';
 
   Future deleteUser() => delete(users).go();
 
-  Future deleteSearch() => delete(searches).go();
-
-  Future deleteSingleSearch(Searche singleSearch) =>
-      delete(searches).delete(singleSearch);
-
-  Future insertSearch(SearchesCompanion singleSearch) async {
-    const int searchesSavingLimit=5;
-
-    if (singleSearch.content.value.length < 3) {
-      return;
-    }
-    List<Searche> currentSearches = await getSearches();
-    if (currentSearches.any((element) => element.content == singleSearch.content.value)) {
-      return;
-    }
-    if (currentSearches.length >= searchesSavingLimit) {
-      deleteSingleSearch(currentSearches.last);
-    }
-    return into(searches).insert(singleSearch);
-  }
-
-
-  Future<List<Searche>> getSearches() async {
-    List<Searche> result = await select(searches).get();
-    return result.reversed.toList();
-  }
 
 }
 

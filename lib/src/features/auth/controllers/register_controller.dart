@@ -1,11 +1,10 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nans/src/Data/models/login_model.dart';
 import 'package:nans/src/Data/models/register_model.dart';
 import 'package:nans/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:nans/src/core/controllers/app_controller.dart';
-import 'package:nans/src/core/controllers/custom_form_controller.dart';
+import 'package:nans/src/core/controllers/base_controller.dart';
+import 'package:nans/src/core/controllers/custom_form_mixin.dart';
 import 'package:nans/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/presentation/snakebars/bottom_snack_bar.dart';
@@ -21,17 +20,20 @@ class RegisterController extends RegisterControllerBase with _$RegisterControlle
   RegisterController(super.appController,super.authRepository,super.logger);
 }
 
-abstract class RegisterControllerBase extends CustomFormController with Store {
+abstract class RegisterControllerBase extends BaseController with CustomFormMixin, Store {
 
   final IAuthRepository authRepository;
   final AppController appController;
 
-  RegisterControllerBase(this.appController,this.authRepository,super.logger,):super(fieldsNumber: 6,);
+  RegisterControllerBase(this.appController,this.authRepository,super.logger,){
+    initForm(fieldsNumber: 6);
+  }
   @observable
-  GenderType userGender=GenderType.Male;
+  GenderType userGender=GenderType.MALE;
 
   @action
-  void toggleGenderType()=>userGender= userGender==GenderType.Male?GenderType.Female:GenderType.Male;
+  void setGenderType(GenderType? genderType)=> userGender= genderType??GenderType.MALE;
+
   @override
     Future<void> submitFunction() async{
     RegisterModel registerModel = RegisterModel(
@@ -46,9 +48,8 @@ abstract class RegisterControllerBase extends CustomFormController with Store {
     await appController.register(registerModel);
   }
 
-
   @override
-  Future<void> afterSuccessSubmit(BuildContext context)async {
+  Future<void> afterSuccessSubmit()async {
     RegisterModel registerModel = RegisterModel(
       name: currentValues[0]!,
       fatherName: currentValues[1]!,
@@ -59,18 +60,28 @@ abstract class RegisterControllerBase extends CustomFormController with Store {
       gender: userGender,
     );
 
-    AutoRouter.of(context).push(ConfirmPhoneNumberRoute(args: ConfirmEmailPageArguments(
-      email: registerModel.email,
-      isOtpFromBackend: false,
+    appRouter.push(ConfirmPhoneNumberRoute(args: ConfirmEmailPageArguments(
+      email: registerModel.email, codeSender:null ,
+      codeChecker: ({required String email,required String otpCode})=>authRepository.checkConfirmationCode(email: email, otpCode: otpCode),
+
       afterSuccessSubmitting: ({required String otpCode, required String email}) async {
         await appController.login(LoginModel(email: registerModel.email, password: registerModel.password));
 
-        BottomSnackBar.show(SnackBarMessages.registeringSuccess, ToastType.success);
+        showSnackBar(SnackBarMessages.registeringSuccess, ToastType.success);
 
-        AutoRouter.of(context).popUntilRoot();
-        AutoRouter.of(context).replace(HomeRoute());
+        appRouter.popUntilRoot();
+        appRouter.replace(AuthRoute());
       },
 
     )));
   }
+
+  void continueAsGuest() {
+    appController.loginAsGuest();
+
+    appRouter.popUntilRoot();
+    appRouter.replace(AuthRoute());
+  }
+
+
  }

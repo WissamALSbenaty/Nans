@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'department_details_model.dart';
 
@@ -23,8 +23,9 @@ DepartmentDetailsModel _$DepartmentDetailsModelFromJson(
 mixin _$DepartmentDetailsModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
   String? get imagePath => throw _privateConstructorUsedError;
-  List<ServiceModel> get services => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,8 +42,8 @@ abstract class $DepartmentDetailsModelCopyWith<$Res> {
   $Res call(
       {String id,
       String title,
-      String? imagePath,
-      List<ServiceModel> services});
+      String description,
+      @JsonKey(name: 'image') String? imagePath});
 }
 
 /// @nodoc
@@ -61,8 +62,8 @@ class _$DepartmentDetailsModelCopyWithImpl<$Res,
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? description = null,
     Object? imagePath = freezed,
-    Object? services = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,14 +74,14 @@ class _$DepartmentDetailsModelCopyWithImpl<$Res,
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      services: null == services
-          ? _value.services
-          : services // ignore: cast_nullable_to_non_nullable
-              as List<ServiceModel>,
     ) as $Val);
   }
 }
@@ -96,8 +97,8 @@ abstract class _$$_DepartmentDetailsModelCopyWith<$Res>
   $Res call(
       {String id,
       String title,
-      String? imagePath,
-      List<ServiceModel> services});
+      String description,
+      @JsonKey(name: 'image') String? imagePath});
 }
 
 /// @nodoc
@@ -114,8 +115,8 @@ class __$$_DepartmentDetailsModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? description = null,
     Object? imagePath = freezed,
-    Object? services = null,
   }) {
     return _then(_$_DepartmentDetailsModel(
       id: null == id
@@ -126,14 +127,14 @@ class __$$_DepartmentDetailsModelCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      services: null == services
-          ? _value._services
-          : services // ignore: cast_nullable_to_non_nullable
-              as List<ServiceModel>,
     ));
   }
 }
@@ -144,9 +145,8 @@ class _$_DepartmentDetailsModel implements _DepartmentDetailsModel {
   _$_DepartmentDetailsModel(
       {required this.id,
       required this.title,
-      this.imagePath,
-      required final List<ServiceModel> services})
-      : _services = services;
+      required this.description,
+      @JsonKey(name: 'image') this.imagePath});
 
   factory _$_DepartmentDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$$_DepartmentDetailsModelFromJson(json);
@@ -156,17 +156,14 @@ class _$_DepartmentDetailsModel implements _DepartmentDetailsModel {
   @override
   final String title;
   @override
-  final String? imagePath;
-  final List<ServiceModel> _services;
+  final String description;
   @override
-  List<ServiceModel> get services {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_services);
-  }
+  @JsonKey(name: 'image')
+  final String? imagePath;
 
   @override
   String toString() {
-    return 'DepartmentDetailsModel(id: $id, title: $title, imagePath: $imagePath, services: $services)';
+    return 'DepartmentDetailsModel(id: $id, title: $title, description: $description, imagePath: $imagePath)';
   }
 
   @override
@@ -176,15 +173,16 @@ class _$_DepartmentDetailsModel implements _DepartmentDetailsModel {
             other is _$_DepartmentDetailsModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.imagePath, imagePath) ||
-                other.imagePath == imagePath) &&
-            const DeepCollectionEquality().equals(other._services, _services));
+                other.imagePath == imagePath));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, imagePath,
-      const DeepCollectionEquality().hash(_services));
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, description, imagePath);
 
   @JsonKey(ignore: true)
   @override
@@ -203,10 +201,11 @@ class _$_DepartmentDetailsModel implements _DepartmentDetailsModel {
 
 abstract class _DepartmentDetailsModel implements DepartmentDetailsModel {
   factory _DepartmentDetailsModel(
-      {required final String id,
-      required final String title,
-      final String? imagePath,
-      required final List<ServiceModel> services}) = _$_DepartmentDetailsModel;
+          {required final String id,
+          required final String title,
+          required final String description,
+          @JsonKey(name: 'image') final String? imagePath}) =
+      _$_DepartmentDetailsModel;
 
   factory _DepartmentDetailsModel.fromJson(Map<String, dynamic> json) =
       _$_DepartmentDetailsModel.fromJson;
@@ -216,9 +215,10 @@ abstract class _DepartmentDetailsModel implements DepartmentDetailsModel {
   @override
   String get title;
   @override
-  String? get imagePath;
+  String get description;
   @override
-  List<ServiceModel> get services;
+  @JsonKey(name: 'image')
+  String? get imagePath;
   @override
   @JsonKey(ignore: true)
   _$$_DepartmentDetailsModelCopyWith<_$_DepartmentDetailsModel> get copyWith =>

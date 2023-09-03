@@ -15,7 +15,7 @@ class HomePageNavigation extends StatefulWidget {
 }
 
 class HomePageNavigationState extends State<HomePageNavigation>
-    with SingleTickerProviderStateMixin  {
+    with SingleTickerProviderStateMixin,AutomaticKeepAliveClientMixin  {
 late TabController tabController;
 
   int selectedNavigationBarItem=1;
@@ -48,6 +48,7 @@ late TabController tabController;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return  WillPopScope(
       onWillPop: popPage,
         child: Scaffold(
@@ -58,7 +59,7 @@ late TabController tabController;
                 controller: tabController,
                 children:    [
                   RequestsPage(),
-                    const MainPage(),
+                     MainPage(),
                      MyProfilePage(),
                 ],
 
@@ -71,6 +72,9 @@ late TabController tabController;
     tabController.dispose();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
 
 }

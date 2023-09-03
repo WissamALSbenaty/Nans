@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:nans/src/Data/Errors/core_errors.dart';
 import 'package:nans/src/Data/Errors/custom_error.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
@@ -32,7 +31,7 @@ class CustomEmptyView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Text(error.errorMessage.translateWord,
               textAlign: TextAlign.center,
-              style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600)
+              style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppStyle.blackColor.shade600)
             ),
           ),
           const CustomSizedBox(height: 16,),
@@ -53,7 +52,7 @@ class CustomEmptyView extends StatelessWidget {
     } else if(error is NotAuthorizedError) {
       return MainButton(
         isLoading: false,
-        title: 'Login/Register', onPressed: () => AutoRouter.of(context).replace(LoginRoute()),);
+        title: 'Login/Register', onPressed: () => appRouter.push(const LoginRoute()),);
     }
 
     return Container();

@@ -11,10 +11,8 @@ _$_DepartmentDetailsModel _$$_DepartmentDetailsModelFromJson(
     _$_DepartmentDetailsModel(
       id: json['id'] as String,
       title: json['title'] as String,
-      imagePath: json['imagePath'] as String?,
-      services: (json['services'] as List<dynamic>)
-          .map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      description: json['description'] as String,
+      imagePath: json['image'] as String?,
     );
 
 Map<String, dynamic> _$$_DepartmentDetailsModelToJson(
@@ -22,6 +20,6 @@ Map<String, dynamic> _$$_DepartmentDetailsModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'imagePath': instance.imagePath,
-      'services': instance.services,
+      'description': instance.description,
+      'image': instance.imagePath,
     };

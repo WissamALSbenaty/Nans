@@ -6,18 +6,26 @@ part of 'comment_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+UserOfCommentModel _$UserOfCommentModelFromJson(Map<String, dynamic> json) =>
+    UserOfCommentModel(
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$UserOfCommentModelToJson(UserOfCommentModel instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+    };
+
 _$_CommentModel _$$_CommentModelFromJson(Map<String, dynamic> json) =>
     _$_CommentModel(
-      id: json['id'] as String,
-      username: json['username'] as String,
-      comment: json['comment'] as String,
-      vote: (json['vote'] as num).toDouble(),
+      comment: json['note'] as String,
+      vote: json['value'] as int,
+      user: UserOfCommentModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CommentModelToJson(_$_CommentModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'username': instance.username,
-      'comment': instance.comment,
-      'vote': instance.vote,
+      'note': instance.comment,
+      'value': instance.vote,
+      'user': instance.user,
     };

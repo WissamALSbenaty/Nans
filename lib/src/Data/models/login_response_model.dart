@@ -9,7 +9,7 @@ part 'login_response_model.g.dart';
 class LoginResponseModel with _$LoginResponseModel{
 
   factory LoginResponseModel({
-    required String token,
+   @JsonKey(name:'accessToken')  required String token,
     required UserProfileModel user,
   })=_LoginResponseModel;
 

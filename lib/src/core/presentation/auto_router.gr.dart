@@ -15,6 +15,14 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AuthRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AuthPage(key: args.key),
+      );
+    },
     ConfirmPhoneNumberRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmPhoneNumberRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -26,17 +34,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>(
-          orElse: () => const LoginRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: LoginPage(key: args.key),
+        child: const LoginPage(),
       );
     },
-    SignUpRoute.name: (routeData) {
+    RegisterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child:  SignUpPage(),
+        child: const RegisterPage(),
       );
     },
     SubmitNewPasswordRoute.name: (routeData) {
@@ -60,29 +66,43 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     DepartmentDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<DepartmentDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const DepartmentDetailsPage(),
+        child: DepartmentDetailsPage(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     NewsDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<NewsDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const NewsDetailsPage(),
+        child: NewsDetailsPage(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     ServiceDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<ServiceDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ServiceDetailsPage(),
+        child: ServiceDetailsPage(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
-    HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+    FormSubmittingRoute.name: (routeData) {
+      final args = routeData.argsAs<FormSubmittingRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: HomePage(key: args.key),
+        child: FormSubmittingPage(
+          key: args.key,
+          serviceDetailsModel: args.serviceDetailsModel,
+        ),
       );
     },
     SplashRoute.name: (routeData) {
@@ -92,27 +112,21 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     DepartmentsRoute.name: (routeData) {
-      final args = routeData.argsAs<DepartmentsRouteArgs>(
-          orElse: () => const DepartmentsRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: DepartmentsPage(key: args.key),
+        child: const DepartmentsPage(),
       );
     },
     NewsRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<NewsRouteArgs>(orElse: () => const NewsRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: NewsPage(key: args.key),
+        child: const NewsPage(),
       );
     },
     ServicesRoute.name: (routeData) {
-      final args = routeData.argsAs<ServicesRouteArgs>(
-          orElse: () => const ServicesRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ServicesPage(key: args.key),
+        child: const ServicesPage(),
       );
     },
     EditAccountRoute.name: (routeData) {
@@ -121,6 +135,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: EditAccountPage(key: args.key),
+      );
+    },
+    EditProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EditProfilePage(),
       );
     },
     MyProfileRoute.name: (routeData) {
@@ -156,6 +176,34 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AuthPage]
+class AuthRoute extends PageRouteInfo<AuthRouteArgs> {
+  AuthRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AuthRoute.name,
+          args: AuthRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthRoute';
+
+  static const PageInfo<AuthRouteArgs> page = PageInfo<AuthRouteArgs>(name);
+}
+
+class AuthRouteArgs {
+  const AuthRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AuthRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -199,42 +247,28 @@ class ConfirmPhoneNumberRouteArgs {
 
 /// generated route for
 /// [LoginPage]
-class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute({List<PageRouteInfo>? children})
+      : super(
           LoginRoute.name,
-          args: LoginRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'LoginRoute';
 
-  static const PageInfo<LoginRouteArgs> page = PageInfo<LoginRouteArgs>(name);
-}
-
-class LoginRouteArgs {
-  const LoginRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'LoginRouteArgs{key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [SignUpPage]
-class SignUpRoute extends PageRouteInfo<void> {
-  const SignUpRoute({List<PageRouteInfo>? children})
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute({List<PageRouteInfo>? children})
       : super(
-          SignUpRoute.name,
+          RegisterRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'SignUpRoute';
+  static const String name = 'RegisterRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -317,71 +351,153 @@ class SubmitPhoneNumberRouteArgs {
 
 /// generated route for
 /// [DepartmentDetailsPage]
-class DepartmentDetailsRoute extends PageRouteInfo<void> {
-  const DepartmentDetailsRoute({List<PageRouteInfo>? children})
-      : super(
+class DepartmentDetailsRoute extends PageRouteInfo<DepartmentDetailsRouteArgs> {
+  DepartmentDetailsRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
           DepartmentDetailsRoute.name,
+          args: DepartmentDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'DepartmentDetailsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<DepartmentDetailsRouteArgs> page =
+      PageInfo<DepartmentDetailsRouteArgs>(name);
+}
+
+class DepartmentDetailsRouteArgs {
+  const DepartmentDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'DepartmentDetailsRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
 /// [NewsDetailsPage]
-class NewsDetailsRoute extends PageRouteInfo<void> {
-  const NewsDetailsRoute({List<PageRouteInfo>? children})
-      : super(
+class NewsDetailsRoute extends PageRouteInfo<NewsDetailsRouteArgs> {
+  NewsDetailsRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
           NewsDetailsRoute.name,
+          args: NewsDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'NewsDetailsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<NewsDetailsRouteArgs> page =
+      PageInfo<NewsDetailsRouteArgs>(name);
+}
+
+class NewsDetailsRouteArgs {
+  const NewsDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'NewsDetailsRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
 /// [ServiceDetailsPage]
-class ServiceDetailsRoute extends PageRouteInfo<void> {
-  const ServiceDetailsRoute({List<PageRouteInfo>? children})
-      : super(
+class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
+  ServiceDetailsRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
           ServiceDetailsRoute.name,
+          args: ServiceDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ServiceDetailsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ServiceDetailsRouteArgs> page =
+      PageInfo<ServiceDetailsRouteArgs>(name);
 }
 
-/// generated route for
-/// [HomePage]
-class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          HomeRoute.name,
-          args: HomeRouteArgs(key: key),
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const PageInfo<HomeRouteArgs> page = PageInfo<HomeRouteArgs>(name);
-}
-
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
+class ServiceDetailsRouteArgs {
+  const ServiceDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
 
   final Key? key;
 
+  final String id;
+
   @override
   String toString() {
-    return 'HomeRouteArgs{key: $key}';
+    return 'ServiceDetailsRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [FormSubmittingPage]
+class FormSubmittingRoute extends PageRouteInfo<FormSubmittingRouteArgs> {
+  FormSubmittingRoute({
+    Key? key,
+    required ServiceDetailsModel serviceDetailsModel,
+    List<PageRouteInfo>? children,
+  }) : super(
+          FormSubmittingRoute.name,
+          args: FormSubmittingRouteArgs(
+            key: key,
+            serviceDetailsModel: serviceDetailsModel,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'FormSubmittingRoute';
+
+  static const PageInfo<FormSubmittingRouteArgs> page =
+      PageInfo<FormSubmittingRouteArgs>(name);
+}
+
+class FormSubmittingRouteArgs {
+  const FormSubmittingRouteArgs({
+    this.key,
+    required this.serviceDetailsModel,
+  });
+
+  final Key? key;
+
+  final ServiceDetailsModel serviceDetailsModel;
+
+  @override
+  String toString() {
+    return 'FormSubmittingRouteArgs{key: $key, serviceDetailsModel: $serviceDetailsModel}';
   }
 }
 
@@ -401,88 +517,44 @@ class SplashRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [DepartmentsPage]
-class DepartmentsRoute extends PageRouteInfo<DepartmentsRouteArgs> {
-  DepartmentsRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class DepartmentsRoute extends PageRouteInfo<void> {
+  const DepartmentsRoute({List<PageRouteInfo>? children})
+      : super(
           DepartmentsRoute.name,
-          args: DepartmentsRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'DepartmentsRoute';
 
-  static const PageInfo<DepartmentsRouteArgs> page =
-      PageInfo<DepartmentsRouteArgs>(name);
-}
-
-class DepartmentsRouteArgs {
-  const DepartmentsRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'DepartmentsRouteArgs{key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [NewsPage]
-class NewsRoute extends PageRouteInfo<NewsRouteArgs> {
-  NewsRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class NewsRoute extends PageRouteInfo<void> {
+  const NewsRoute({List<PageRouteInfo>? children})
+      : super(
           NewsRoute.name,
-          args: NewsRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'NewsRoute';
 
-  static const PageInfo<NewsRouteArgs> page = PageInfo<NewsRouteArgs>(name);
-}
-
-class NewsRouteArgs {
-  const NewsRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'NewsRouteArgs{key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [ServicesPage]
-class ServicesRoute extends PageRouteInfo<ServicesRouteArgs> {
-  ServicesRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class ServicesRoute extends PageRouteInfo<void> {
+  const ServicesRoute({List<PageRouteInfo>? children})
+      : super(
           ServicesRoute.name,
-          args: ServicesRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'ServicesRoute';
 
-  static const PageInfo<ServicesRouteArgs> page =
-      PageInfo<ServicesRouteArgs>(name);
-}
-
-class ServicesRouteArgs {
-  const ServicesRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ServicesRouteArgs{key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -512,6 +584,20 @@ class EditAccountRouteArgs {
   String toString() {
     return 'EditAccountRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [EditProfilePage]
+class EditProfileRoute extends PageRouteInfo<void> {
+  const EditProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          EditProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

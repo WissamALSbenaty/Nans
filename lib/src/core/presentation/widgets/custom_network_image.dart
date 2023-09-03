@@ -17,14 +17,14 @@ const CustomNetworkImage({Key? key,required this.imagePath,
   Widget build(BuildContext context) {
 
     return GestureDetector(
-      onTap: onPressImage!,
+      onTap: onPressImage,
       child: ClipRRect(
         borderRadius: radius,
           child: CachedNetworkImage(
             fit: boxFit,
             imageUrl: imagePath??'',
-            errorWidget:(_,__,___)=> SvgPicture.asset(Assets.logo),
-            placeholder:(_,__,)=> SvgPicture.asset(Assets.logo),
+            errorWidget:(_,__,___)=> Image.asset(Assets.logo),
+            placeholder:(_,__,)=> Image.asset(Assets.logo),
 
           height: height,width: width),
         ),

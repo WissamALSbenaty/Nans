@@ -15,16 +15,19 @@ abstract class IAuthRepository extends Repository{
   final AppDatabase localDatabase;
   IAuthRepository(super.apiHelper, this.localDatabase);
 
-  Future<LoginResponseModel> register(RegisterModel registerModel);
+  Future<void> register(RegisterModel registerModel);
   Future<LoginResponseModel> login(LoginModel loginModel);
   Future<void> loginAsGuest();
   Future<void> logout();
 
   Future<void> sendConfirmationCode({required String email});
   Future<void> checkConfirmationCode({required String email,required String otpCode});
+  Future<void> sendForgetPasswordCode({required String email});
+  Future<void> checkForgetPasswordCode({required String email,required String otpCode});
 
-  Future<UserProfileModel> changeEmail({required String email});
+  Future<void> changeEmail({required String email});
   Future<UserProfileModel> getUserProfile();
+  Future<void> editUserProfile({String? name,String? fatherName,String? motherName,String? phoneNumber,});
 
   Future<void> resetPassword({required String email,required String otpCode,required String newPassword,});
   Future<void> changePassword({required String oldPassword,required String newPassword,});

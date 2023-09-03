@@ -3,7 +3,6 @@ import 'package:nans/src/core/presentation/widgets/custom_network_image.dart';
 import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'custom_sized_box.dart';
 
@@ -31,6 +30,7 @@ abstract class CustomTile extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: onTilePressed,
+      style: AppStyle.buttonsStyle,
       child: Stack(
         children: [
           Container(
@@ -60,16 +60,17 @@ abstract class CustomTile extends StatelessWidget {
                       const CustomSizedBox(height: 8,),
 
                       Text(title.translateWord,
-                            style: AppStyle.textTheme.titleSmall!.copyWith( fontWeight: FontWeight.bold,),
+                            style: AppStyle.textTheme.bodyMedium!.copyWith( fontWeight: FontWeight.bold,),maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
 
                       const CustomSizedBox(height: 2,),
-                      Text(titleMedium,overflow: TextOverflow.ellipsis ,maxLines: 1, style: AppStyle.textTheme.titleSmall!.copyWith( color: AppColors.blackColor.shade500),),
+                      Text(titleMedium,overflow: TextOverflow.ellipsis ,maxLines: 1, style: AppStyle.textTheme.titleLarge!.copyWith( color: AppStyle.blackColor.shade500),),
 
                       if(titleSmall!=null)
                         ...[
                           const CustomSizedBox(height: 2,),
-                          Text(titleSmall!,overflow: TextOverflow.ellipsis ,maxLines: 1, style: AppStyle.textTheme.titleSmall!.copyWith( color: AppColors.blackColor.shade500),)
+                          Text(titleSmall!,overflow: TextOverflow.ellipsis ,maxLines: 1, style: AppStyle.textTheme.titleLarge!.copyWith( color: AppStyle.blackColor.shade500),)
                         ]
                     ],
                   ),
@@ -91,13 +92,13 @@ class OfflineCustomTile extends CustomTile{
 
   OfflineCustomTile({super.key, required super.onTilePressed,
    super.trailing,required String imagePath, required super.title,required super.titleMedium,super.titleSmall,}):
-        super(imageWidget:   SvgPicture.asset(imagePath),);
+        super(imageWidget:   Image.asset(imagePath),);
 }
 
 class OnlineCustomTile extends CustomTile{
 
   OnlineCustomTile({super.key, required super.onTilePressed,
-   super.trailing,required String imagePath, required super.title,required super.titleMedium,
+   super.trailing,required String? imagePath, required super.title,required super.titleMedium,
     super.titleSmall,super.needToCrossNearTile=false}):
         super(imageWidget:CustomNetworkImage(imagePath: imagePath,)
   );

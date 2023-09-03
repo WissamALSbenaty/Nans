@@ -10,7 +10,7 @@ class IsPhoneNumberValidator extends CustomValidator{
 
   @override
   String? validate({required String fieldName,required String? toCheckString}) {
-    if( toCheckString==null|| ! RegExp(r'^\d{10}$').hasMatch(toCheckString)) {
+    if( toCheckString==null|| ! RegExp(r'^(!?(\+|00)?(963))?[1-9][0-9]{8}$').hasMatch(toCheckString)) {
       return NotPhoneNumberError(fieldName:fieldName).errorMessage;
     }
     return null;

@@ -13,13 +13,15 @@ _$_ServiceDetailsModel _$$_ServiceDetailsModelFromJson(
       title: json['title'] as String,
       department:
           DepartmentModel.fromJson(json['department'] as Map<String, dynamic>),
-      price: (json['price'] as num).toDouble(),
       image: json['image'] as String?,
       description: json['description'] as String,
-      votes: (json['votes'] as num).toDouble(),
-      comments: (json['comments'] as List<dynamic>)
+      comments: (json['votes'] as List<dynamic>)
           .map((e) => CommentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      serviceForm: json['serviceForm'] == null
+          ? null
+          : ServiceFormModel.fromJson(
+              json['serviceForm'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ServiceDetailsModelToJson(
@@ -28,9 +30,8 @@ Map<String, dynamic> _$$_ServiceDetailsModelToJson(
       'id': instance.id,
       'title': instance.title,
       'department': instance.department,
-      'price': instance.price,
       'image': instance.image,
       'description': instance.description,
-      'votes': instance.votes,
-      'comments': instance.comments,
+      'votes': instance.comments,
+      'serviceForm': instance.serviceForm,
     };

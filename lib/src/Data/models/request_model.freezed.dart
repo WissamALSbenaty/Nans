@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'request_model.dart';
 
@@ -21,9 +21,9 @@ RequestModel _$RequestModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RequestModel {
   String get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
   DateTime get creationDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
   String get requestStatus => throw _privateConstructorUsedError;
   DepartmentModel get department => throw _privateConstructorUsedError;
   ServiceModel get service => throw _privateConstructorUsedError;
@@ -42,9 +42,10 @@ abstract class $RequestModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String title,
-      @JsonKey(fromJson: DateTime.parse) DateTime creationDate,
-      String requestStatus,
+      @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
+          DateTime creationDate,
+      @JsonKey(name: 'status')
+          String requestStatus,
       DepartmentModel department,
       ServiceModel service});
 
@@ -66,7 +67,6 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? creationDate = null,
     Object? requestStatus = null,
     Object? department = null,
@@ -76,10 +76,6 @@ class _$RequestModelCopyWithImpl<$Res, $Val extends RequestModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
               as String,
       creationDate: null == creationDate
           ? _value.creationDate
@@ -127,9 +123,10 @@ abstract class _$$_RequestModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String title,
-      @JsonKey(fromJson: DateTime.parse) DateTime creationDate,
-      String requestStatus,
+      @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
+          DateTime creationDate,
+      @JsonKey(name: 'status')
+          String requestStatus,
       DepartmentModel department,
       ServiceModel service});
 
@@ -151,7 +148,6 @@ class __$$_RequestModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? creationDate = null,
     Object? requestStatus = null,
     Object? department = null,
@@ -161,10 +157,6 @@ class __$$_RequestModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
               as String,
       creationDate: null == creationDate
           ? _value.creationDate
@@ -191,9 +183,10 @@ class __$$_RequestModelCopyWithImpl<$Res>
 class _$_RequestModel implements _RequestModel {
   _$_RequestModel(
       {required this.id,
-      required this.title,
-      @JsonKey(fromJson: DateTime.parse) required this.creationDate,
-      required this.requestStatus,
+      @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
+          required this.creationDate,
+      @JsonKey(name: 'status')
+          required this.requestStatus,
       required this.department,
       required this.service});
 
@@ -203,11 +196,10 @@ class _$_RequestModel implements _RequestModel {
   @override
   final String id;
   @override
-  final String title;
-  @override
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
   final DateTime creationDate;
   @override
+  @JsonKey(name: 'status')
   final String requestStatus;
   @override
   final DepartmentModel department;
@@ -216,7 +208,7 @@ class _$_RequestModel implements _RequestModel {
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, title: $title, creationDate: $creationDate, requestStatus: $requestStatus, department: $department, service: $service)';
+    return 'RequestModel(id: $id, creationDate: $creationDate, requestStatus: $requestStatus, department: $department, service: $service)';
   }
 
   @override
@@ -225,7 +217,6 @@ class _$_RequestModel implements _RequestModel {
         (other.runtimeType == runtimeType &&
             other is _$_RequestModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.creationDate, creationDate) ||
                 other.creationDate == creationDate) &&
             (identical(other.requestStatus, requestStatus) ||
@@ -238,7 +229,7 @@ class _$_RequestModel implements _RequestModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, title, creationDate, requestStatus, department, service);
+      runtimeType, id, creationDate, requestStatus, department, service);
 
   @JsonKey(ignore: true)
   @override
@@ -257,9 +248,10 @@ class _$_RequestModel implements _RequestModel {
 abstract class _RequestModel implements RequestModel {
   factory _RequestModel(
       {required final String id,
-      required final String title,
-      @JsonKey(fromJson: DateTime.parse) required final DateTime creationDate,
-      required final String requestStatus,
+      @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
+          required final DateTime creationDate,
+      @JsonKey(name: 'status')
+          required final String requestStatus,
       required final DepartmentModel department,
       required final ServiceModel service}) = _$_RequestModel;
 
@@ -269,11 +261,10 @@ abstract class _RequestModel implements RequestModel {
   @override
   String get id;
   @override
-  String get title;
-  @override
-  @JsonKey(fromJson: DateTime.parse)
+  @JsonKey(name: 'createdAt', fromJson: DateTime.parse)
   DateTime get creationDate;
   @override
+  @JsonKey(name: 'status')
   String get requestStatus;
   @override
   DepartmentModel get department;

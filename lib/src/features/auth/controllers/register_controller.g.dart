@@ -29,11 +29,11 @@ mixin _$RegisterController on RegisterControllerBase, Store {
       ActionController(name: 'RegisterControllerBase', context: context);
 
   @override
-  void toggleGenderType() {
+  void setGenderType(GenderType? genderType) {
     final _$actionInfo = _$RegisterControllerBaseActionController.startAction(
-        name: 'RegisterControllerBase.toggleGenderType');
+        name: 'RegisterControllerBase.setGenderType');
     try {
-      return super.toggleGenderType();
+      return super.setGenderType(genderType);
     } finally {
       _$RegisterControllerBaseActionController.endAction(_$actionInfo);
     }

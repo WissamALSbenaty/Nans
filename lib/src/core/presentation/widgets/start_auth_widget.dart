@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:nans/src/core/controllers/app_controller.dart';
 import 'package:nans/src/core/presentation/assets.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
@@ -13,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class StartAuthWidget extends StatelessWidget with WidgetStoreCreatorMixin<AppController> {
+class StartAuthWidget extends StatelessWidget with WidgetControllerCreatorMixin<AppController> {
   final String title;
    StartAuthWidget({Key? key,required this.title}) : super(key: key);
 
@@ -46,7 +45,7 @@ class StartAuthWidget extends StatelessWidget with WidgetStoreCreatorMixin<AppCo
               title.translateWord,
               textAlign: TextAlign.center,
               style: AppStyle.textTheme.bodyMedium!
-                  .copyWith(color: AppColors.blackColor.shade500),
+                  .copyWith(color: AppStyle.blackColor.shade500),
             ),
           ),
           const CustomSizedBox(
@@ -56,15 +55,15 @@ class StartAuthWidget extends StatelessWidget with WidgetStoreCreatorMixin<AppCo
               isLoading: false,
             title: "Continue as guest".translateWord,
             onPressed: ()async {
-              await createdStore.loginAsGuest();
-              AutoRouter.of(context).pop();
+              await createdController.loginAsGuest();
+              appRouter.pop();
             }),
               const CustomSizedBox(
               height: 32,
               ),
               SecondaryButton(
               title: "Login".translateWord,
-              onPress: ()=>AutoRouter.of(context).push( LoginRoute()),
+              onPress: ()=>appRouter.push( const LoginRoute()),
               ),
               const CustomSizedBox(
               height: 32,
@@ -80,11 +79,11 @@ class StartAuthWidget extends StatelessWidget with WidgetStoreCreatorMixin<AppCo
               width: 2,
               ),
               GestureDetector(
-              onTap: ()=>AutoRouter.of(context).push(const SignUpRoute()),
+              onTap: ()=>appRouter.push( const RegisterRoute()),
                 child: Text(
                   'Create Account'.translateWord,
                   style: AppStyle.textTheme.bodyMedium!.copyWith(
-                      color: AppColors.yellow, fontWeight: FontWeight.bold),
+                      color: AppStyle.primary, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

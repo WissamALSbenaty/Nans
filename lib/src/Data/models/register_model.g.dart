@@ -29,6 +29,6 @@ Map<String, dynamic> _$$_RegisterModelToJson(_$_RegisterModel instance) =>
     };
 
 const _$GenderTypeEnumMap = {
-  GenderType.Male: 'Male',
-  GenderType.Female: 'Female',
+  GenderType.MALE: 'MALE',
+  GenderType.FEMALE: 'FEMALE',
 };

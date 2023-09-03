@@ -38,7 +38,7 @@ class _SubmitPhoneNumberPageState extends State<SubmitPhoneNumberPage> {
               backgroundColor:Colors.white,
               appBar: CustomAppBar(
                 context: context,
-                barTitle:'Enter Your Phone Number',
+                barTitle:'Enter Your Email',
               ),
 
               body: Observer(
@@ -56,13 +56,13 @@ class _SubmitPhoneNumberPageState extends State<SubmitPhoneNumberPage> {
 
                           const CustomSizedBox(height: 57,),
 
-                          EmailTextField(onChangedFunction:(value)=> controller.changeValue(0, value)) ,
+                          EmailTextField(fieldIndex: 0,formController: controller) ,
 
                           const Spacer(),
 
                           MainButton(title: 'Continue',
                               isLoading:controller.isLoading,
-                              onPressed:()=> controller.submitForm(context)),
+                              onPressed:controller.submitForm),
 
                           const CustomSizedBox(height: 32,),
                         ])
@@ -70,4 +70,5 @@ class _SubmitPhoneNumberPageState extends State<SubmitPhoneNumberPage> {
               )),
     );
   }
+
 }
